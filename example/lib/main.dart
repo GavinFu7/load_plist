@@ -16,7 +16,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   example() async {
     // 測試前寫入 plist 檔案
     final appDocumentsDir = await getApplicationDocumentsDirectory();
@@ -24,10 +23,10 @@ class _MyAppState extends State<MyApp> {
     if (!await file.exists()) {
       final realmBytes = await rootBundle.load("assets/test.plist");
       await file.writeAsBytes(
-        realmBytes.buffer.asUint8List(realmBytes.offsetInBytes, realmBytes.lengthInBytes),
-        mode: FileMode.write);
+          realmBytes.buffer
+              .asUint8List(realmBytes.offsetInBytes, realmBytes.lengthInBytes),
+          mode: FileMode.write);
     }
-
 
     // Read plist
     final data = await plist("${appDocumentsDir.path}/test.plist");
@@ -45,11 +44,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Read plist plugin example'),
-        ),
-        body: Container()
-      ),
+          appBar: AppBar(
+            title: const Text('Read plist plugin example'),
+          ),
+          body: Container()),
     );
   }
 }
